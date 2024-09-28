@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import firebase from './firebase'; // Asegúrate de importar tu configuración de Firebase
+import { auth, db } from '../firebase'; // Cambia la importación aquí
 
 const UserProfile = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const userId = firebase.auth().currentUser?.uid; // Obtén el UID del usuario autenticado
+    const userId = auth.currentUser?.uid; // Usa auth para obtener el UID
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -13,7 +13,7 @@ const UserProfile = () => {
                 return; // Salir si no hay usuario autenticado
             }
             try {
-                const userDoc = await firebase.firestore().collection('users').doc(userId).get();
+                const userDoc = await db.collection('users').doc(userId).get(); // Usa db para acceder a Firestore
                 
                 if (userDoc.exists) {
                     setUserData(userDoc.data());
@@ -51,3 +51,4 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
