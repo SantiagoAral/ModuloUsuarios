@@ -4,8 +4,10 @@ import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import { Home } from "./components/Home";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-
 import { AuthProvider } from "./context/authContext";
+import UserProfile from "./components/UserProfile";
+import UserDAO from "./components/UserDAO";
+import UserService from "./components/UserService";
 
 function App() {
   return (
@@ -22,6 +24,9 @@ function App() {
             }
           />
           <Route path="/register" element={<Register />} />
+          <Route path="/userdao" element={<UserDAO/>} />
+          <Route path="/userprofile" element={<UserProfile/>} />
+          <Route path="/userservice" element={<UserService/>} />
         </Routes>
       </AuthProvider>
     </div>
